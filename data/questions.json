@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "text": "Có công mài sắt, có ngày nên kim",
+    "difficulty": 1
+  },
+  {
+    "id": 2,
+    "text": "Ăn quả nhớ kẻ trồng cây",
+    "difficulty": 1
+  },
+  {
+    "id": 3,
+    "text": "Gần mực thì đen, gần đèn thì sáng",
+    "difficulty": 1
+  },
+  {
+    "id": 4,
+    "text": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+    "difficulty": 2
+  },
+  {
+    "id": 5,
+    "text": "Lá lành đùm lá rách",
+    "difficulty": 1
+  },
+  {
+    "id": 6,
+    "text": "Đi một ngày đàng, học một sàng khôn",
+    "difficulty": 2
+  },
+  {
+    "id": 7,
+    "text": "Chớ thấy sóng cả mà ngã tay chèo",
+    "difficulty": 3
+  }
+]
