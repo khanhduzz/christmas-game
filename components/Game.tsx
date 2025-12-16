@@ -1,14 +1,17 @@
-
 'use client'
 import { useEffect, useState } from 'react'
 import questions from '@/data/questions.json'
 import TeamSelect from './TeamSelect'
 import GameBoard from './GameBoard'
 import Result from './Result'
+import BackgroundMusic from './BackgroundMusic'
+import { useTeams } from '@/app/context/TeamContext'
 
 export type Team = 'A' | 'B'
 
 export default function Game() {
+  const { teamA, teamB } = useTeams()
+
   const [team, setTeam] = useState<Team | null>(null)
   const [time, setTime] = useState(300)
   const [score, setScore] = useState(0)
@@ -18,38 +21,44 @@ export default function Game() {
   useEffect(() => {
     if (!team || finished) return
     if (time <= 0) setFinished(true)
+
     const id = setInterval(() => setTime(t => t - 1), 1000)
     return () => clearInterval(id)
   }, [team, time, finished])
 
-  if (!team) return <TeamSelect onSelect={setTeam} />
-  if (finished) return <Result team={team} score={score} time={time} />
-
   return (
-    <GameBoard
-      team={team}
-      question={queue[0]}
-      score={score}
-      time={time}
-      onCorrect={() => {
-        setScore(s => {
-          const next = s + 1
-          if (next >= 20) {
-            setFinished(true)
-          }
-          return next
-        })
-      
-        setQueue(q => {
-          const nextQueue = q.slice(1)
-          if (nextQueue.length === 0) {
-            setFinished(true)
-          }
-          return nextQueue
-        })
-      }}
-        
-      onSkip={() => setQueue(q => [...q.slice(1), q[0]])}
-    />
+    <>
+      <BackgroundMusic playing={!!team && !finished} />
+
+      {!team && <TeamSelect onSelect={setTeam} />}
+
+      {finished && team && (
+        <Result team={team} score={score} time={time} />
+      )}
+
+
+      {team && !finished && (
+        <GameBoard
+          team={team === 'A' ? teamA : teamB}
+          question={queue[0]}
+          score={score}
+          time={time}
+          onCorrect={() => {
+            setScore(s => {
+              const next = s + 1
+              if (next >= 20) setFinished(true)
+              return next
+            })
+
+            setQueue(q => {
+              const nextQueue = q.slice(1)
+              if (nextQueue.length === 0) setFinished(true)
+              return nextQueue
+            })
+          }}
+          onSkip={() => setQueue(q => [...q.slice(1), q[0]])}
+        />
+      )}
+    </>
   )
 }

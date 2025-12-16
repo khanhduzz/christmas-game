@@ -8,7 +8,7 @@
     ],
     "baseUrl": ".",                // 👈 ADD
     "paths": {
-      "@/*": ["./*"]               // 👈 ADD
+      "@/*": ["./*", "./app/*"]               // 👈 ADD
     },
 
     "resolveJsonModule": true,     // 👈 ADD

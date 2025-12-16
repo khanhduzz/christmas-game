@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 export default function GameBoard({
   team, question, score, time, onCorrect, onSkip
 }: any) {
@@ -10,8 +12,9 @@ export default function GameBoard({
     )
   }
 
-  const mm = String(Math.floor(time / 60)).padStart(2,'0')
-  const ss = String(time % 60).padStart(2,'0')
+  const mm = String(Math.floor(time / 60)).padStart(2, '0')
+  const ss = String(time % 60).padStart(2, '0')
+  const [musicOn, setMusicOn] = useState(true)
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -22,18 +25,28 @@ export default function GameBoard({
           <div>⭐ {score}</div>
         </div>
 
-        <div className="text-center text-3xl font-semibold p-8">
+        <div className="text-center text-4xl md:text-5xl font-bold p-8 leading-snug">
           “{question.text}”
         </div>
 
+
         <div className="flex justify-center gap-6">
-          <button onClick={onCorrect} className="px-8 py-4 bg-green-500 rounded-xl">
+          {/* <button onClick={onCorrect} className="px-8 py-4 bg-green-500 rounded-xl"> */}
+          <button onClick={onCorrect} className="px-10 py-5 text-2xl bg-green-500 rounded-xl">
             ✔ ĐÚNG
           </button>
-          <button onClick={onSkip} className="px-8 py-4 bg-yellow-400 rounded-xl text-black">
+          {/* <button onClick={onSkip} className="px-8 py-4 bg-yellow-400 rounded-xl text-black"> */}
+          <button onClick={onSkip} className="px-10 py-5 text-2xl bg-yellow-400 text-black rounded-xl">
             ⏭ SKIP
           </button>
         </div>
+        <button
+          onClick={() => setMusicOn(v => !v)}
+          className="absolute top-6 right-6 text-xl"
+        >
+          {musicOn ? '🔊' : '🔇'}
+        </button>
+
       </div>
     </div>
   )
