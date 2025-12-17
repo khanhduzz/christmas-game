@@ -6,7 +6,7 @@ import ResultOverlay from './ResultOverlay'
 import GameOverOverlay from './GameOverOverlay'
 
 export default function MathGame() {
-    const [time, setTime] = useState(10)
+    const [time, setTime] = useState(300)
     const [scoreA, setScoreA] = useState(0)
     const [scoreB, setScoreB] = useState(0)
     const [question, setQuestion] = useState(generateMath())
