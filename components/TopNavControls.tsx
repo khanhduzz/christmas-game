@@ -13,7 +13,7 @@ export default function TopNavControls() {
         onClick={() => router.push('/')}
         className="px-4 py-2 bg-white/90 text-black rounded-xl shadow hover:bg-white"
       >
-        🎮 Games
+        🎮 Trò chơi
       </button>
 
       {/* Back to team setup */}
@@ -25,7 +25,7 @@ export default function TopNavControls() {
         }}
         className="px-4 py-2 bg-red-500 text-white rounded-xl shadow hover:bg-red-600"
       >
-        🛠 Named
+        🛠 Đặt tên đội
       </button>
     </div>
   )

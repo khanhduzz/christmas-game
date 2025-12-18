@@ -1,4 +1,6 @@
 import { useState } from "react"
+import GameTutorialModal from "./GameTutorialModal"
+import { game1 } from "./tutorials"
 
 export default function GameBoard({
   team, question, score, time, onCorrect, onSkip
@@ -15,6 +17,7 @@ export default function GameBoard({
   const mm = String(Math.floor(time / 60)).padStart(2, '0')
   const ss = String(time % 60).padStart(2, '0')
   const [musicOn, setMusicOn] = useState(true)
+
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -40,14 +43,14 @@ export default function GameBoard({
             ⏭ SKIP
           </button>
         </div>
-        <button
-          onClick={() => setMusicOn(v => !v)}
-          className="absolute top-6 right-6 text-xl"
-        >
-          {musicOn ? '🔊' : '🔇'}
-        </button>
 
       </div>
+      <button
+        onClick={() => setMusicOn(v => !v)}
+        className="absolute top-6 right-6 text-xl"
+      >
+        {musicOn ? '🔊' : '🔇'}
+      </button>
     </div>
   )
 }
