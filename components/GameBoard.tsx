@@ -16,7 +16,7 @@ export default function GameBoard({
 
   const mm = String(Math.floor(time / 60)).padStart(2, '0')
   const ss = String(time % 60).padStart(2, '0')
-  const [musicOn, setMusicOn] = useState(true)
+  // const [musicOn, setMusicOn] = useState(true)
 
 
   return (
@@ -45,12 +45,12 @@ export default function GameBoard({
         </div>
 
       </div>
-      <button
+      {/* <button
         onClick={() => setMusicOn(v => !v)}
         className="absolute top-6 right-6 text-xl"
       >
         {musicOn ? '🔊' : '🔇'}
-      </button>
+      </button> */}
     </div>
   )
 }

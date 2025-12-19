@@ -26,19 +26,30 @@ export default function GameTutorialModal({
     CHRISTMAS_ICONS[index % CHRISTMAS_ICONS.length]
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center px-4">
+    <div
+      className={`
+        fixed inset-0 z-50
+        flex items-center justify-center px-4
+        bg-black/40
+        transition-opacity duration-300
+        ${open ? 'opacity-100' : 'opacity-0'}
+      `}
+      >
       <div
-        className="
+        className={`
           relative
           w-full max-w-lg
           rounded-3xl
           bg-[#FFF6E5]
-          p-3
+          p-5
           shadow-2xl
           text-[#3B2F2F]
-          animate-fadeIn
-        "
-      >
+          transform
+          transition-all duration-300 ease-out
+          ${open ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
+        `}
+        >
+
         {/* Close icon */}
         <button
           onClick={onClose}
@@ -48,12 +59,12 @@ export default function GameTutorialModal({
         </button>
 
         {/* Title */}
-        <h2 className="text-xl font-extrabold text-center mb-5">
+        <h2 className="text-3xl font-extrabold text-center mb-5">
           {title}
         </h2>
 
         {/* Rules */}
-        <ul className="space-y-0.5 text-sm pl-1 ml-7">
+        <ul className="space-y-0.5 text-xl pl-1 ml-7">
           {rules.map((rule, i) => (
             <li
               key={i}
@@ -71,7 +82,7 @@ export default function GameTutorialModal({
 
         {/* Time */}
         {time && (
-          <p className="mt-4 text-center font-bold text-red-600">
+          <p className="mt-4 text-xl text-center font-bold text-red-600">
             ⏱ {time}
           </p>
         )}
@@ -97,7 +108,7 @@ export default function GameTutorialModal({
           <button
             onClick={onClose}
             className="
-              px-8 py-2.5
+              px-10 py-3 text-lg
               rounded-xl
               bg-red-600
               text-white

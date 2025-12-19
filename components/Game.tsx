@@ -4,7 +4,7 @@ import questions from '@/data/questions.json'
 import TeamSelect from './TeamSelect'
 import GameBoard from './GameBoard'
 import Result from './Result'
-import BackgroundMusic from './BackgroundMusic'
+// import BackgroundMusic from './BackgroundMusic'
 import { useTeams } from '@/app/context/TeamContext'
 
 export type Team = 'A' | 'B'
@@ -28,7 +28,7 @@ export default function Game() {
 
   return (
     <>
-      <BackgroundMusic playing={!!team && !finished} />
+      {/* <BackgroundMusic playing={!!team && !finished} /> */}
 
       {!team && <TeamSelect onSelect={setTeam} />}
 
