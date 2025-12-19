@@ -3,21 +3,21 @@ import { useTeams } from '@/context/TeamContext'
 
 
 type Props = {
-    time: number
-    question: string
-    scoreA: number
-    scoreB: number
-    onTeamA: () => void
-    onTeamB: () => void
-    // onChoose: (team: 'A' | 'B') => void
+  time: number
+  question: string
+  scoreA: number
+  scoreB: number
+  onTeamA: () => void
+  onTeamB: () => void
+  // onChoose: (team: 'A' | 'B') => void
 }
 
 export default function MathBoard({
-    time, question, scoreA, scoreB, onTeamA, onTeamB
+  time, question, scoreA, scoreB, onTeamA, onTeamB
 }: Props) {
-    const mm = String(Math.floor(time / 60)).padStart(2, '0')
-    const ss = String(time % 60).padStart(2, '0')
-    const { teamA, teamB } = useTeams()
+  const mm = String(Math.floor(time / 60)).padStart(2, '0')
+  const ss = String(time % 60).padStart(2, '0')
+  const { teamA, teamB, addGreen, addRed } = useTeams()
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
@@ -32,7 +32,10 @@ export default function MathBoard({
       <div className="flex gap-10">
         <button
           // onClick={() => onChoose('A')}
-          onClick={onTeamA}
+          onClick={() => {
+            addGreen()
+            onTeamA()
+          }}
           className="team-btn green"
         >
           {teamA}
@@ -40,7 +43,10 @@ export default function MathBoard({
 
         <button
           // onClick={() => onChoose('B')}
-          onClick={onTeamB}
+          onClick={() => {
+            addRed()
+            onTeamB()
+          }}
           className="team-btn red"
         >
           {teamB}
@@ -49,58 +55,3 @@ export default function MathBoard({
     </div>
   )
 }
-
-
-// type Props = {
-//   time: number
-//   question: string
-//   scoreA: number
-//   scoreB: number
-//   onTeamA: () => void
-//   onTeamB: () => void
-// }
-
-// export default function MathBoard({
-//   time,
-//   question,
-//   scoreA,
-//   scoreB,
-//   onTeamA,
-//   onTeamB
-// }: Props) {
-//   return (
-//     <div className="h-screen flex flex-col items-center justify-center gap-6">
-      
-//       {/* Timer */}
-//       <div className="text-3xl font-bold">⏱ {time}s</div>
-
-//       {/* Question */}
-//       <div className="text-5xl font-extrabold">
-//         {question}
-//       </div>
-
-//       {/* Scores */}
-//       <div className="flex gap-12 text-2xl font-bold">
-//         <div className="text-green-600">🟢 A: {scoreA}</div>
-//         <div className="text-red-600">🔴 B: {scoreB}</div>
-//       </div>
-
-//       {/* Buttons */}
-//       <div className="flex gap-10 mt-6">
-//         <button
-//           onClick={onTeamA}
-//           className="px-12 py-6 bg-green-600 text-white text-2xl rounded-3xl shadow-xl hover:bg-green-700 transition"
-//         >
-//           🟢 +1 Đội A
-//         </button>
-
-//         <button
-//           onClick={onTeamB}
-//           className="px-12 py-6 bg-red-600 text-white text-2xl rounded-3xl shadow-xl hover:bg-red-700 transition"
-//         >
-//           🔴 +1 Đội B
-//         </button>
-//       </div>
-//     </div>
-//   )
-// }

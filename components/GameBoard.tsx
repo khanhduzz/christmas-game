@@ -1,6 +1,7 @@
 import { useState } from "react"
 import GameTutorialModal from "./GameTutorialModal"
 import { game1 } from "./tutorials"
+import { useTeams } from "@/app/context/TeamContext"
 
 export default function GameBoard({
   team, question, score, time, onCorrect, onSkip
@@ -16,14 +17,14 @@ export default function GameBoard({
 
   const mm = String(Math.floor(time / 60)).padStart(2, '0')
   const ss = String(time % 60).padStart(2, '0')
-  // const [musicOn, setMusicOn] = useState(true)
+  const { teamA, teamB, addGreen, addRed } = useTeams()
 
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white/10 backdrop-blur rounded-3xl p-10 max-w-3xl w-full">
         <div className="flex justify-between mb-6">
-          <div>Đội {team}</div>
+          <div>{team}</div>
           <div>⏱ {mm}:{ss}</div>
           <div>⭐ {score}</div>
         </div>
@@ -35,7 +36,10 @@ export default function GameBoard({
 
         <div className="flex justify-center gap-6">
           {/* <button onClick={onCorrect} className="px-8 py-4 bg-green-500 rounded-xl"> */}
-          <button onClick={onCorrect} className="px-10 py-5 text-2xl bg-green-500 rounded-xl">
+          <button onClick={() => {
+            onCorrect
+            team === teamA ? addGreen() : addRed()
+          }} className="px-10 py-5 text-2xl bg-green-500 rounded-xl">
             ✔ ĐÚNG
           </button>
           {/* <button onClick={onSkip} className="px-8 py-4 bg-yellow-400 rounded-xl text-black"> */}

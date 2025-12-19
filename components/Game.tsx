@@ -10,7 +10,7 @@ import { useTeams } from '@/app/context/TeamContext'
 export type Team = 'A' | 'B'
 
 export default function Game() {
-  const { teamA, teamB } = useTeams()
+  const { teamA, teamB, addGreen, addRed } = useTeams()
 
   const [team, setTeam] = useState<Team | null>(null)
   const [time, setTime] = useState(300)
