@@ -7,8 +7,8 @@ type Props = {
     question: string
     scoreA: number
     scoreB: number
-      onTeamA: () => void
-  onTeamB: () => void
+    onTeamA: () => void
+    onTeamB: () => void
     // onChoose: (team: 'A' | 'B') => void
 }
 
