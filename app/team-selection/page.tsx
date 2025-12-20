@@ -78,17 +78,23 @@ export default function TeamSelectionPage() {
 
       {phase === 'RANDOM_PICK' && (
         <>
-          <div className="grid grid-cols-3 gap-6">
-            <TeamArea team="A" color="green" members={teamA.members} />
-            <WaitingArea members={waiting} />
-            <TeamArea team="B" color="red" members={teamB.members} />
+          {/* <div className="mx-auto max-w-5xl grid grid-cols-3 gap-6"> */}
+          <div className="flex justify-center">
+            <div className="min-w-[40vw]">
+              {/* <TeamArea team="A" color="green" members={teamA.members} /> */}
+              <WaitingArea members={waiting} />
+              {/* <TeamArea team="B" color="red" members={teamB.members} /> */}
+            </div>
           </div>
 
-          <PickControls
-            disabled={animating}
-            onGreen={() => pickRandom('GREEN')}
-            onRed={() => pickRandom('RED')}
-          />
+          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+            <PickControls
+              disabled={animating}
+              onGreen={() => pickRandom('GREEN')}
+              onRed={() => pickRandom('RED')}
+            />
+          </div>
+
 
           {picked && <RandomPickAnimation member={picked} />}
         </>

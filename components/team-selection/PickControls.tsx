@@ -27,7 +27,7 @@ export default function PickControls({
         onClick={onGreen}
         className="px-10 py-5 bg-green-500 rounded-2xl text-2xl font-bold"
       >
-        🟢 {teamA.name}
+        🟢 Đội xanh
       </button>
 
       <button
@@ -35,7 +35,7 @@ export default function PickControls({
         onClick={onRed}
         className="px-10 py-5 bg-red-500 rounded-2xl text-2xl font-bold"
       >
-        🔴 {teamB.name}
+        🔴 Đội đỏ
       </button>
     </div>
   )

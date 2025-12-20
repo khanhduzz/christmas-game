@@ -3,6 +3,7 @@ import TopNavControls from '@/components/TopNavControls'
 import { TeamProvider } from './context/TeamContext'
 import './globals.css'
 import type { Metadata } from 'next'
+import TeamBoard from '@/components/TeamBoard'
 
 export const metadata: Metadata = {
   title: '🎮 Playing |🎄 Christmas Ca Dao Game',
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-gradient-to-b from-red-700 via-red-600 to-green-700 text-white">
         <TeamProvider>
           <TopNavControls />
+          <TeamBoard />
           {children}
         </TeamProvider>
       </body>

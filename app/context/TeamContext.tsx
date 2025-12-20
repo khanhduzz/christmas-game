@@ -33,12 +33,12 @@ const TeamContext = createContext<TeamSelect | null>(null)
 
 export function TeamProvider({ children }: { children: React.ReactNode }) {
   const [teamA, setTeamA] = useState<Team>({
-    name: 'Green team',
+    name: 'Đội xanh',
     members: []
   })
 
   const [teamB, setTeamB] = useState<Team>({
-    name: 'Red team',
+    name: 'Đội đỏ',
     members: []
   })
 
