@@ -9,7 +9,18 @@ export default function GameOverOverlay({
     scoreA: number
     scoreB: number
 }) {
-    const { teamA, teamB } = useTeams()
+    // const { teamA, teamB } = useTeams()
+    const {
+  teamA,
+  teamB,
+  setTeamAName,
+  setTeamBName,
+  setTeamAMembers,
+  setTeamBMembers,
+  activePlayer,
+  setActivePlayer
+} = useTeams()
+
     const winner =
         scoreA > scoreB ? teamA :
             scoreB > scoreA ? teamB :
@@ -24,15 +35,15 @@ export default function GameOverOverlay({
                 </h1>
 
                 <div className="text-2xl mb-4">
-                    {teamA}: <b>{scoreA}</b> điểm
+                    {teamA.name}: <b>{scoreA}</b> điểm
                 </div>
 
                 <div className="text-2xl mb-6">
-                    {teamB}: <b>{scoreB}</b> điểm
+                    {teamB.name}: <b>{scoreB}</b> điểm
                 </div>
 
                 <div className="text-3xl font-bold text-red-600">
-                    🏆 {winner}
+                    🏆 {winner != 'HÒA' ? winner.name : 'HÒA'}
                 </div>
 
             </div>

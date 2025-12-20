@@ -1,32 +1,3 @@
-// 'use client'
-// import { useEffect, useRef } from 'react'
-
-// export default function BackgroundMusic({ playing }: { playing: boolean }) {
-//   const audioRef = useRef<HTMLAudioElement | null>(null)
-
-//   useEffect(() => {
-//     if (!audioRef.current) return
-
-//     audioRef.current.volume = 0.3
-    
-//     if (playing) {
-//       audioRef.current.play().catch(() => {})
-//     } else {
-//       audioRef.current.pause()
-//     }
-//   }, [playing])
-
-//   return (
-//     <audio
-//       ref={audioRef}
-//       src="/audio/silent-night-christmas.mp3"
-//       loop
-//       preload="auto"
-//     />
-//   )
-// }
-
-
 'use client'
 import { useEffect, useRef } from 'react'
 

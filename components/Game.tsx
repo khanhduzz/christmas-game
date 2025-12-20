@@ -4,7 +4,6 @@ import questions from '@/data/questions.json'
 import TeamSelect from './TeamSelect'
 import GameBoard from './GameBoard'
 import Result from './Result'
-// import BackgroundMusic from './BackgroundMusic'
 import { useTeams } from '@/app/context/TeamContext'
 
 export type Team = 'A' | 'B'
@@ -28,8 +27,6 @@ export default function Game() {
 
   return (
     <>
-      {/* <BackgroundMusic playing={!!team && !finished} /> */}
-
       {!team && <TeamSelect onSelect={setTeam} />}
 
       {finished && team && (
@@ -49,7 +46,7 @@ export default function Game() {
               if (next >= 20) setFinished(true)
               return next
             })
-
+            team === teamA.name ? addGreen() : addRed()
             setQueue(q => {
               const nextQueue = q.slice(1)
               if (nextQueue.length === 0) setFinished(true)
