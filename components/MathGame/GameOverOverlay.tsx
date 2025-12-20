@@ -9,7 +9,6 @@ export default function GameOverOverlay({
     scoreA: number
     scoreB: number
 }) {
-    // const { teamA, teamB } = useTeams()
     const {
   teamA,
   teamB,

@@ -9,7 +9,6 @@ import TeamBoard from './TeamBoard'
 
 export default function GameMenu() {
   const router = useRouter()
-  // const { teamA, teamB } = useTeams()
   const {
   teamA,
   teamB,

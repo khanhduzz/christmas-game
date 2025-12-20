@@ -9,7 +9,6 @@ export default function PickControls({
   onRed: () => void
   disabled: boolean
 }) {
-  // const { teamA, teamB } = useTeams()
   const {
   teamA,
   teamB,

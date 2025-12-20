@@ -16,7 +16,6 @@ export default function MathBoard({
 }: Props) {
   const mm = String(Math.floor(time / 60)).padStart(2, '0')
   const ss = String(time % 60).padStart(2, '0')
-  // const { teamA, teamB, addGreen, addRed } = useTeams()
   const {
   teamA,
   teamB,

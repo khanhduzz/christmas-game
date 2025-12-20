@@ -2,7 +2,6 @@
 import { useTeams } from '@/app/context/TeamContext'
 
 export default function TeamSetup({ onDone }: { onDone: () => void }) {
-  // const { teamA, teamB, setTeamA, setTeamB } = useTeams()
   const {
   teamA,
   teamB,
