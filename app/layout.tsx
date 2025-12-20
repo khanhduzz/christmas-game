@@ -1,4 +1,3 @@
-
 import TopNavControls from '@/components/TopNavControls'
 import { TeamProvider } from './context/TeamContext'
 import './globals.css'

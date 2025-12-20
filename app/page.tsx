@@ -1,4 +1,3 @@
-
 'use client'
 import GameMenu from '@/components/GameMenu'
 
