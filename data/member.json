@@ -7,8 +7,16 @@
   { "id": "6", "name": "Thi" },
   { "id": "7", "name": "Nhi" },
   { "id": "8", "name": "Luân" },
-  { "id": "9", "name": "A Phụng" },
-  { "id": "10", "name": "C Thúy" },
-  { "id": "11", "name": "A Tâm" },
-  { "id": "12", "name": "A Tuyên" }
+  { "id": "9", "name": "Phụng" },
+  { "id": "10", "name": "Thúy" },
+  { "id": "11", "name": "Tâm" },
+  { "id": "12", "name": "Tuyên" },
+  { "id": "13", "name": "Trâm" },
+  { "id": "14", "name": "Jamin" },
+  { "id": "15", "name": "Minh" },
+  { "id": "16", "name": "Giang" },
+  { "id": "17", "name": "Quốc" },
+  { "id": "18", "name": "Nam" },
+  { "id": "19", "name": "Thịnh" },
+  { "id": "20", "name": "Dư" }
 ]
