@@ -1,90 +1,5 @@
-'use client'
-import { createContext, useContext, useState } from 'react'
-
-export type TeamMember = {
-  id: string
-  name: string
-}
-
-type Team = {
-  name: string
-  members: TeamMember[]
-}
-
-type TeamSelect = {
-  teamA: Team
-  teamB: Team
-  setTeamAName: (v: string) => void
-  setTeamBName: (v: string) => void
-  setTeamAMembers: (m: TeamMember[]) => void
-  setTeamBMembers: (m: TeamMember[]) => void
-
-  activePlayer: string | null
-  setActivePlayer: (id: string | null) => void
-
-  greenScore: number
-  redScore: number
-  addGreen: (v?: number) => void
-  addRed: (v?: number) => void
-  resetScores: () => void
-}
-
-const TeamContext = createContext<TeamSelect | null>(null)
-
-export function TeamProvider({ children }: { children: React.ReactNode }) {
-  const [teamA, setTeamA] = useState<Team>({
-    name: 'Đội xanh',
-    members: []
-  })
-
-  const [teamB, setTeamB] = useState<Team>({
-    name: 'Đội đỏ',
-    members: []
-  })
-
-  const [activePlayer, setActivePlayer] = useState<string | null>(null)
-
-  const [greenScore, setGreenScore] = useState(0)
-  const [redScore, setRedScore] = useState(0)
-
-  return (
-    <TeamContext.Provider
-      value={{
-        teamA,
-        teamB,
-
-        setTeamAName: name => setTeamA(t => ({ ...t, name })),
-        setTeamBName: name => setTeamB(t => ({ ...t, name })),
-
-        setTeamAMembers: members => setTeamA(t => ({ ...t, members })),
-        setTeamBMembers: members => setTeamB(t => ({ ...t, members })),
-
-        activePlayer,
-        setActivePlayer,
-
-        greenScore,
-        redScore,
-        addGreen: (v = 1) => setGreenScore(s => s + v),
-        addRed: (v = 1) => setRedScore(s => s + v),
-        resetScores: () => {
-          setGreenScore(0)
-          setRedScore(0)
-        }
-      }}
-    >
-      {children}
-    </TeamContext.Provider>
-  )
-}
-
-export const useTeams = () => {
-  const ctx = useContext(TeamContext)
-  if (!ctx) throw new Error('useTeams must be inside TeamProvider')
-  return ctx
-}
-
 // 'use client'
-// import { createContext, useContext, useEffect, useState } from 'react'
+// import { createContext, useContext, useState } from 'react'
 
 // export type TeamMember = {
 //   id: string
@@ -116,39 +31,21 @@ export const useTeams = () => {
 
 // const TeamContext = createContext<TeamSelect | null>(null)
 
-// const TEAM_A_KEY = 'teamA_name'
-// const TEAM_B_KEY = 'teamB_name'
-
 // export function TeamProvider({ children }: { children: React.ReactNode }) {
-//   // ✅ hooks live HERE — inside component
 //   const [teamA, setTeamA] = useState<Team>({
-//     name:
-//       typeof window !== 'undefined'
-//         ? localStorage.getItem(TEAM_A_KEY) || 'Green team'
-//         : 'Green team',
+//     name: 'Đội xanh',
 //     members: []
 //   })
 
 //   const [teamB, setTeamB] = useState<Team>({
-//     name:
-//       typeof window !== 'undefined'
-//         ? localStorage.getItem(TEAM_B_KEY) || 'Red team'
-//         : 'Red team',
+//     name: 'Đội đỏ',
 //     members: []
 //   })
 
 //   const [activePlayer, setActivePlayer] = useState<string | null>(null)
+
 //   const [greenScore, setGreenScore] = useState(0)
 //   const [redScore, setRedScore] = useState(0)
-
-//   // ✅ persist names
-//   useEffect(() => {
-//     localStorage.setItem(TEAM_A_KEY, teamA.name)
-//   }, [teamA.name])
-
-//   useEffect(() => {
-//     localStorage.setItem(TEAM_B_KEY, teamB.name)
-//   }, [teamB.name])
 
 //   return (
 //     <TeamContext.Provider
@@ -185,3 +82,107 @@ export const useTeams = () => {
 //   if (!ctx) throw new Error('useTeams must be inside TeamProvider')
 //   return ctx
 // }
+
+'use client'
+import { createContext, useContext, useState, useEffect } from 'react'
+
+export type TeamMember = {
+  id: string
+  name: string
+}
+
+type Team = {
+  name: string
+  members: TeamMember[]
+}
+
+type TeamSelect = {
+  teamA: Team
+  teamB: Team
+  setTeamAName: (v: string) => void
+  setTeamBName: (v: string) => void
+  setTeamAMembers: (m: TeamMember[]) => void
+  setTeamBMembers: (m: TeamMember[]) => void
+  
+  // Tính năng mới
+  excludedIds: string[]
+  toggleExcludeMember: (id: string) => void
+
+  activePlayer: string | null
+  setActivePlayer: (id: string | null) => void
+
+  greenScore: number
+  redScore: number
+  addGreen: (v?: number) => void
+  addRed: (v?: number) => void
+  resetScores: () => void
+}
+
+const TeamContext = createContext<TeamSelect | null>(null)
+
+export function TeamProvider({ children }: { children: React.ReactNode }) {
+  const [teamA, setTeamA] = useState<Team>({ name: 'Đội xanh', members: [] })
+  const [teamB, setTeamB] = useState<Team>({ name: 'Đội đỏ', members: [] })
+  const [activePlayer, setActivePlayer] = useState<string | null>(null)
+  const [greenScore, setGreenScore] = useState(0)
+  const [redScore, setRedScore] = useState(0)
+
+  // Quản lý ID những người nghỉ
+  const [excludedIds, setExcludedIds] = useState<string[]>([])
+
+  // Load danh sách đã xóa từ localStorage khi khởi chạy
+  useEffect(() => {
+    const saved = localStorage.getItem('excluded_member_ids')
+    if (saved) {
+      try {
+        setExcludedIds(JSON.parse(saved))
+      } catch (e) {
+        console.error("Lỗi parse JSON từ localStorage", e)
+      }
+    }
+  }, [])
+
+  const toggleExcludeMember = (id: string) => {
+    setExcludedIds(prev => {
+      const isExcluded = prev.includes(id)
+      const next = isExcluded ? prev.filter(i => i !== id) : [...prev, id]
+      localStorage.setItem('excluded_member_ids', JSON.stringify(next))
+      return next
+    })
+  }
+
+  return (
+    <TeamContext.Provider
+      value={{
+        teamA,
+        teamB,
+        setTeamAName: name => setTeamA(t => ({ ...t, name })),
+        setTeamBName: name => setTeamB(t => ({ ...t, name })),
+        setTeamAMembers: members => setTeamA(t => ({ ...t, members })),
+        setTeamBMembers: members => setTeamB(t => ({ ...t, members })),
+        
+        excludedIds,
+        toggleExcludeMember,
+
+        activePlayer,
+        setActivePlayer,
+        greenScore,
+        redScore,
+        addGreen: (v = 1) => setGreenScore(s => s + v),
+        addRed: (v = 1) => setRedScore(s => s + v),
+        resetScores: () => {
+          setGreenScore(0)
+          setRedScore(0)
+        }
+      }}
+    >
+      {children}
+    </TeamContext.Provider>
+  )
+}
+
+export const useTeams = () => {
+  const ctx = useContext(TeamContext)
+  if (!ctx) throw new Error('useTeams must be inside TeamProvider')
+  return ctx
+}
