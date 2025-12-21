@@ -13,10 +13,9 @@
   { "id": "12", "name": "Tuyên" },
   { "id": "13", "name": "Trâm" },
   { "id": "14", "name": "Jamin" },
-  { "id": "15", "name": "Minh" },
-  { "id": "16", "name": "Giang" },
-  { "id": "17", "name": "Quốc" },
-  { "id": "18", "name": "Nam" },
-  { "id": "19", "name": "Thịnh" },
-  { "id": "20", "name": "Dư" }
+  { "id": "15", "name": "Giang" },
+  { "id": "16", "name": "Quốc" },
+  { "id": "17", "name": "Nam" },
+  { "id": "18", "name": "Thịnh" },
+  { "id": "19", "name": "Dư" }
 ]
