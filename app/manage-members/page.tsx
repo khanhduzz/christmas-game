@@ -1,5 +1,5 @@
 'use client'
-import allMembers from '@/data/member.json' // Đường dẫn tới file json của bạn
+import allMembers from '@/data/member.json'
 import { useTeams } from '@/app/context/TeamContext'
 import Link from 'next/link'
 
