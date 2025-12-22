@@ -1,17 +1,6 @@
-// 'use client'
-// import GameMenu from '@/components/GameMenu'
-
-// export default function Home() {
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-red-700 to-green-700">
-//       <GameMenu />
-//     </div>
-//   )
-// }
-
 'use client'
 import Link from 'next/link'
-import { motion } from 'framer-motion' // Nếu bạn có cài framer-motion, nếu không dùng CSS transition
+import { motion } from 'framer-motion'
 
 export default function HomePage() {
   return (
