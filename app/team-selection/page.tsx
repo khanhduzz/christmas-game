@@ -78,7 +78,7 @@ export default function TeamSelectionPage() {
             : '🎁 Chia Đội Ngẫu Nhiên'}
         </motion.h1>
         <p className="text-white/40 font-bold uppercase tracking-[0.3em] mt-2">
-          Christmas Battle 2024
+          Christmas Battle 2025
         </p>
       </header>
 
