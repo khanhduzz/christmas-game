@@ -42,7 +42,7 @@ export default function GameOverOverlay({
                 </motion.div>
 
                 <h2 className="text-2xl md:text-3xl font-black text-yellow-500 uppercase tracking-[0.4em] mb-8">
-                    {winner ? 'CHIẾN THẮNG CHUNG CUỘC' : 'KẾT QUẢ HÒA'}
+                    {winner ? 'CHIẾN THẮNG' : 'KẾT QUẢ HÒA'}
                 </h2>
 
                 {/* Bảng so sánh điểm số */}

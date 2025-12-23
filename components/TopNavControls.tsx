@@ -176,6 +176,13 @@ export default function TopNavControls() {
                 </button>
               </div>
             </div>
+
+            <button
+              onClick={() => router.push('/final')}
+              className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-full font-black text-xs shadow-[0_4px_0_rgb(153,27,27)] active:translate-y-1 active:shadow-none transition-all flex items-center gap-2"
+            >
+              🏆 TỔNG KẾT
+            </button>
           </div>
 
 
