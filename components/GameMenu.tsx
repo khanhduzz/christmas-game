@@ -6,6 +6,7 @@ import { game1, game2, game3 } from './tutorials'
 import { useState } from 'react'
 import TeamBoard from './TeamBoard'
 import { motion } from 'framer-motion'
+import { sfx } from '@/utils/sfx'
 
 export default function GameMenu() {
   const router = useRouter()
@@ -16,15 +17,15 @@ export default function GameMenu() {
   const [showTutorial3, setShowTutorial3] = useState(false)
 
   // Cấu trúc chung cho Card trò chơi
-  const GameCard = ({ 
-    title, 
-    icon, 
-    colorClass, 
-    shadowClass, 
-    onClick, 
-    onTutorial, 
-    tutorialOpen, 
-    tutorialData 
+  const GameCard = ({
+    title,
+    icon,
+    colorClass,
+    shadowClass,
+    onClick,
+    onTutorial,
+    tutorialOpen,
+    tutorialData
   }: any) => (
     <div className="flex flex-col gap-4 group">
       <button
@@ -49,13 +50,13 @@ export default function GameMenu() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-transparent">
       {/* Bảng tên đội và điểm số */}
-      <motion.div 
+      <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="mb-12 w-full max-w-4xl"
       >
         <TeamBoard />
-        
+
         <div className="text-center mt-8">
           <h1 className="text-5xl md:text-7xl font-black text-white italic drop-shadow-2xl tracking-tighter">
             CHỌN <span className="text-yellow-400">THỬ THÁCH</span>
@@ -69,20 +70,25 @@ export default function GameMenu() {
       </motion.div>
 
       {/* Danh sách trò chơi */}
-      <motion.div 
+      <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2 }}
         className="grid grid-cols-1 md:grid-cols-3 gap-10"
       >
         {/* GAME 1 */}
-        <GameCard 
+        <GameCard
           title="Tính nhanh"
           icon="🧮"
           colorClass="bg-red-600"
           shadowClass="shadow-[0_10px_0_rgb(153,27,27)]"
-          onClick={() => router.push('/math')}
-          onTutorial={() => setShowTutorial1(true)}
+          onClick={() => {
+            sfx.start();
+            router.push('/math');
+          }}
+          onTutorial={() =>
+            setShowTutorial1(true)
+          }
           tutorialOpen={showTutorial1}
         />
         <GameTutorialModal
@@ -92,7 +98,7 @@ export default function GameMenu() {
         />
 
         {/* GAME 2 */}
-        <GameCard 
+        <GameCard
           title="Tục ngữ"
           icon="🎤"
           colorClass="bg-green-600"
@@ -108,7 +114,7 @@ export default function GameMenu() {
         />
 
         {/* GAME 3 */}
-        <GameCard 
+        <GameCard
           title="Xếp ly"
           icon="🎁"
           colorClass="bg-yellow-500"
